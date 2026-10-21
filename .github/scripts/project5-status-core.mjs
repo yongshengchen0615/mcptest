@@ -40,6 +40,7 @@ const hasHan=s=>/[\u3400-\u9fff]/u.test(s);
 export function buildChineseStatusPlan(options){
   if(!Array.isArray(options)||options.length===0||options.length>100)throw Error('Status options not available');
   const ids=new Set(),names=new Set(),updates=[];
+  let unmappedCount=0;
   for(const old of options){
     if(typeof old?.id!=='string'||!old.id||typeof old.name!=='string'||!old.name.trim()||
       typeof old.color!=='string'||!old.color.trim())throw Error('Invalid Status option');
@@ -47,7 +48,7 @@ export function buildChineseStatusPlan(options){
     ids.add(old.id);
     const key=normalize(old.name);
     const known=byName.get(key)||byLabel.get(old.name);
-    if(!known&&!hasHan(old.name))throw Error('Unmapped English status option: refusing partial translation');
+    if(!known&&!hasHan(old.name))unmappedCount++;
     const name=known?.label||old.name;
     const description=known?.description||(
       typeof old.description==='string'&&hasHan(old.description)&&old.description.trim()
@@ -60,7 +61,8 @@ export function buildChineseStatusPlan(options){
   return {
     updates,
     changed:updates.some((u,i)=>u.name!==options[i].name||u.description!==options[i].description),
-    preservedIds:updates.length
+    preservedIds:updates.length,
+    unmappedCount
   };
 }
 export function validateStatusEvent(event){
