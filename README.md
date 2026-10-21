@@ -31,3 +31,18 @@ Update an Issue's title or body from ChatGPT while preserving the marker to re-s
 **Verification:** Check repository **Actions → Sync GitHub Project 7**, then refresh Project #7. Issue creation is not proof of Project card creation. Repository is PUBLIC: do not include sensitive data in planning cards.
 
 Unit tests: `node --test .github/scripts/project7-core.test.mjs`.
+
+## Verified live status (2026-10-21)
+
+- Project #7 item for [Issue #1](https://github.com/yongshengchen0615/test1111/issues/1): `PVTI_lAHOAY1fWs4BoDd7zhCY0Os`
+- [GitHub Actions verification](https://github.com/yongshengchen0615/test1111/actions/runs/39591816097): success; field write and readback confirm `Status=Todo`.
+- Project #7 currently has **no field named Priority**. The workflow now fails explicitly if card metadata references missing fields/options, rather than silently claiming full success.
+- For priority, first add a **single-select** field named `Priority` to Project #7 with options `Low`, `Medium`, `High` (or adjust the metadata to the actual field options). Then restore a standalone `<!-- project7:Priority=Low -->` line in the Issue body.
+- A new issue edit triggers resync. Do **not** paste a GitHub token into the issue body or ChatGPT.
+
+### Scope and verification troubleshooting
+
+- For a user-owned Project, use a **Personal Access Token (classic)** with the `project` scope in Actions secret `PROJECTS_V2_TOKEN`. `read:project` alone is insufficient for writing.
+- Authorization errors from `gh project ...` are reported with actionable guidance; simply running `gh auth refresh` inside Actions cannot change the stored token.
+- Synchronization checks actual item existence, then reads the requested fields again and fails if a written value is absent or different. Workflow Success now means the requested supported field values were verified, not only that the Issue exists.
+- The GitHub CLI version on Actions does not allow `gh project item-list --field ... --format json` together; the implementation uses the standard JSON view to perform readback.
