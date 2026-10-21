@@ -1,11 +1,14 @@
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {OWNER,PROJECT_NUMBER} from './project5-plan.mjs';
-import {validateStatusEvent} from './project5-status-core.mjs';
 
 if(!process.env.GH_TOKEN)throw Error('Missing Project token');
 const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
-validateStatusEvent(event);
+const marker='<!-- project5-status-audit:v1 -->';
+if(event?.repository?.full_name!==OWNER+'/mcptest'||
+   event?.issue?.user?.login!==OWNER||event?.sender?.login!==OWNER||
+   typeof event?.issue?.body!=='string'||event.issue.body.split(marker).length!==2)
+  throw Error('Unauthorized private audit trigger');
 const target='yongshengchen0615/MembershipSystem';
 function call(args){
   try{
