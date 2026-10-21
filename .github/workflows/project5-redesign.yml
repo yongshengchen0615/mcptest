@@ -1,0 +1,29 @@
+name: Project 5 Non-destructive Redesign
+on:
+  issues:
+    types: [opened, edited, reopened]
+permissions:
+  contents: read
+concurrency:
+  group: project5-redesign-apply
+  cancel-in-progress: false
+jobs:
+  setup:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project5-redesign:apply:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Project 5 planner tests
+        run: node --test .github/scripts/project5-plan.test.mjs
+      - name: Apply additive fields and views to Project 5
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node .github/scripts/project5-apply.mjs
