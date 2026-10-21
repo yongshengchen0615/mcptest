@@ -26,8 +26,11 @@ test('Rerun is idempotent',()=>{
   const first=buildChineseStatusPlan(opts());
   assert.equal(buildChineseStatusPlan(first.updates).changed,false);
 });
-test('Unknown English label is blocked',()=>{
-  assert.throws(()=>buildChineseStatusPlan([{id:'x',name:'Custom Unmapped State',color:'RED',description:''}]));
+test('Unknown English label remains unchanged and is counted for manual translation',()=>{
+  const p=buildChineseStatusPlan([{id:'x',name:'Custom Unmapped State',color:'RED',description:''}]);
+  assert.equal(p.updates[0].name,'Custom Unmapped State');
+  assert.equal(p.unmappedCount,1);
+  assert.match(p.updates[0].description,/[\u3400-\u9fff]/u);
 });
 test('Existing Chinese custom label is preserved and gets a Chinese description',()=>{
   const p=buildChineseStatusPlan([{id:'x',name:'待人工審核',color:'BLUE',description:'Old'}]);
