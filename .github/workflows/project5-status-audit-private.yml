@@ -1,0 +1,24 @@
+name: Project 5 Private Status Translation Audit
+on:
+  issues:
+    types: [opened, edited]
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project5-status-audit:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Snapshot only Status option texts to private owner repository
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node .github/scripts/project5-status-audit-private.mjs
