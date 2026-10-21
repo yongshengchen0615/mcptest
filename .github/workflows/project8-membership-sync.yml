@@ -1,0 +1,41 @@
+name: Project 8 Membership Plan Sync
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project8-membership-plan-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-project8:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.actor == 'yongshengchen0615') ||
+      (github.event_name == 'issues' &&
+       github.event.issue.user.login == 'yongshengchen0615' &&
+       github.event.sender.login == 'yongshengchen0615' &&
+       contains(github.event.issue.body, '<!-- project8-membership-sync:v1 -->'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Retrieve plan and importer only from private MembershipSystem
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          mkdir -p project8
+          gh api repos/yongshengchen0615/MembershipSystem/contents/.github/project8/plan.json --jq .content | base64 --decode > project8/plan.json
+          gh api repos/yongshengchen0615/MembershipSystem/contents/.github/project8/import.mjs --jq .content | base64 --decode > project8/import.mjs
+          node --check project8/import.mjs
+          echo 'PRIVATE_PLAN_FETCH=ok'
+      - name: Write and read back Project 8 cards
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node project8/import.mjs --views
