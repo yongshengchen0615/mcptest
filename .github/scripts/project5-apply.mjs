@@ -2,6 +2,8 @@ import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {OWNER,PROJECT_NUMBER,planChanges,validateApplyEvent} from './project5-plan.mjs';
 
+if(process.env.PROJECT5_OWNER!==OWNER || Number(process.env.PROJECT5_NUMBER)!==PROJECT_NUMBER)
+  throw Error('PROJECT5_OWNER / PROJECT5_NUMBER must target the approved Project #5');
 if(!process.env.GH_TOKEN)throw Error('PROJECTS_V2_TOKEN is not configured');
 const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
 validateApplyEvent(event);
