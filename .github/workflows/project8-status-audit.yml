@@ -1,0 +1,33 @@
+name: Project 8 Status Audit
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  status-audit:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project8-status-audit:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Inspect Status fields and Board grouping
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          echo 'STATUS_AUDIT_FIELDS_START'
+          gh project field-list 8 --owner yongshengchen0615 --limit 100 --format json --jq '.fields | map(select(.name == "Status" or .name == "Delivery Stage") | {name,id,type,options:(.options // [] | map({name,id}))})'
+          echo 'STATUS_AUDIT_FIELDS_END'
+          echo 'STATUS_AUDIT_VIEWS_START'
+          gh api graphql -f query='query { user(login:"yongshengchen0615") { projectV2(number:8) { views(first:30) { nodes { number name layout verticalGroupByFields(first:5) { nodes { ... on ProjectV2SingleSelectField {name} } } } } } } }' --jq '.data.user.projectV2.views.nodes | map({number,name,layout,columns: [.verticalGroupByFields.nodes[].name]})'
+          echo 'STATUS_AUDIT_VIEWS_END'
+          echo 'STATUS_AUDIT_COUNTS_START'
+          gh project item-list 8 --owner yongshengchen0615 --limit 1000 --format json | jq '[.items[]|select(.title|test("^\\[M[0-9]{3}\\]"))|{status:(.status // "UNSET"),stage:(."Delivery Stage" // "UNSET")}] | group_by(.status) | map({status:.[0].status,count:length})'
+          echo 'STATUS_AUDIT_COUNTS_END'
