@@ -1,0 +1,36 @@
+name: Project 8 Status Configuration
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project8-status-config
+  cancel-in-progress: false
+
+jobs:
+  configure-status:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project8-configure-status:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Download status config script from private repository
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          gh api repos/yongshengchen0615/MembershipSystem/contents/.github/project8/configure-status.mjs --jq .content | base64 --decode > configure-status.mjs
+          node --check configure-status.mjs
+          echo 'PROJECT8_STATUS_SCRIPT_VALID=yes'
+      - name: Apply native Status field options and verify card counts
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node configure-status.mjs
