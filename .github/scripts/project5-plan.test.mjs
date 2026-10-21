@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {FIELDS,VIEWS,planChanges,validateApplyEvent,APPLY_MARKER} from './project5-plan.mjs';
+const event=(body=APPLY_MARKER)=>({repository:{full_name:'yongshengchen0615/mcptest'},issue:{user:{login:'yongshengchen0615'},html_url:'https://github.com/yongshengchen0615/mcptest/issues/28',body},sender:{login:'yongshengchen0615'}});
+const project=(fields=[],views=[])=>({id:'PVT_test',fields:{nodes:fields,pageInfo:{hasNextPage:false}},views:{nodes:views,pageInfo:{hasNextPage:false}}});
+test('empty project schedules all additions',()=>{const p=planChanges(project());assert.equal(p.fieldsToCreate.length,FIELDS.length);assert.equal(p.viewsToCreate.length,VIEWS.length)});
+test('reruns are idempotent',()=>{const fs=FIELDS.map(f=>({name:f.name,dataType:f.dataType,options:f.options?.map(name=>({name}))}));const vs=VIEWS.map(x=>({...x}));const p=planChanges(project(fs,vs));assert.equal(p.fieldsToCreate.length,0);assert.equal(p.viewsToCreate.length,0);assert.deepEqual(p.conflicts,[])});
+test('field type conflict blocks changes',()=>assert.equal(planChanges(project([{name:'Priority',dataType:'TEXT'}])).conflicts.length,1));
+test('existing options are not overwritten',()=>{const p=planChanges(project([{name:'Priority',dataType:'SINGLE_SELECT',options:[{name:'Urgent'}]}]));assert.equal(p.fieldsToCreate.some(x=>x.name==='Priority'),false);assert.equal(p.warnings.length,1)});
+test('incomplete pagination blocks changes',()=>{const p=project();p.fields.pageInfo.hasNextPage=true;assert.throws(()=>planChanges(p))});
+test('owner event accepted',()=>assert.equal(validateApplyEvent(event()),true));
+test('unauthorized event rejected',()=>{const e=event();e.sender.login='other';assert.throws(()=>validateApplyEvent(e))});
+test('different repo rejected',()=>{const e=event();e.repository.full_name='other/repo';assert.throws(()=>validateApplyEvent(e))});
+test('duplicate marker rejected',()=>assert.throws(()=>validateApplyEvent(event(APPLY_MARKER+APPLY_MARKER))));
+test('invalid issue URL rejected',()=>{const e=event();e.issue.html_url='https://example.com/x';assert.throws(()=>validateApplyEvent(e))});
