@@ -1,0 +1,41 @@
+name: Project 7 Mock Release
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+  deployments: write
+
+concurrency:
+  group: project7-sim-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project7-release-demo:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mock unit and smoke tests
+        run: |
+          node --check simulation/release/run-mock-deploy.mjs
+          node --test simulation/release/release-core.test.mjs
+          node -e "const s=require('fs').readFileSync('simulation/release/mock-site.html','utf8'); if(!s.includes('DEMO ONLY / 模擬部署')||!s.includes('模擬部署完成')) process.exit(1)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: project7-mock-release-${{ github.event.issue.number }}
+          path: simulation/release/mock-site.html
+      - name: Update Project option and record mock deployment
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          REPO_TOKEN: ${{ github.token }}
+        run: node simulation/release/run-mock-deploy.mjs
