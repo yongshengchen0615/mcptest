@@ -1,0 +1,54 @@
+name: Project 5 Read-only Inventory
+on:
+  issues:
+    types: [opened, edited, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project5-inventory
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.actor == 'yongshengchen0615') ||
+      (github.event_name == 'issues' &&
+       github.event.issue.user.login == 'yongshengchen0615' &&
+       github.event.sender.login == 'yongshengchen0615' &&
+       contains(github.event.issue.body, '<!-- project5-inventory:v1 -->'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check authorization and fetch Project 5 metadata
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::PROJECTS_V2_TOKEN is missing"
+            exit 1
+          fi
+          gh api graphql \
+            -f query='query($login:String!,$number:Int!){ user(login:$login){ projectV2(number:$number){id title public items{totalCount} fields(first:100){nodes{... on ProjectV2Field{id name dataType} ... on ProjectV2SingleSelectField{id name options{id name}} ... on ProjectV2IterationField{id name}}} views(first:50){nodes{id name layout}}}}}' \
+            -f login='yongshengchen0615' -F number=5 > project5.json
+          node <<'NODE'
+          const fs = require('node:fs');
+          const raw = JSON.parse(fs.readFileSync('project5.json', 'utf8'));
+          if (raw.errors?.length) throw Error('GraphQL query failed (details redacted)');
+          const p = raw.data?.user?.projectV2;
+          if (!p?.id) throw Error('Project #5 is not accessible with this token');
+          const safe = {accessible:true, public:p.public===true, itemCount:p.items?.totalCount ?? null, fieldCount:p.fields?.nodes?.length ?? null, viewCount:p.views?.nodes?.length ?? null};
+          if (p.public===true) {
+            safe.title=p.title;
+            safe.fields=p.fields.nodes.map(x=>({name:x.name, type:x.dataType || (x.options ? 'SINGLE_SELECT' : 'ITERATION'), options:x.options?.map(o=>o.name)}));
+            safe.views=p.views.nodes.map(x=>({name:x.name, layout:x.layout}));
+          } else {
+            safe.privateDetailsRedacted=true;
+          }
+          console.log('PROJECT5_INVENTORY '+JSON.stringify(safe));
+          NODE
