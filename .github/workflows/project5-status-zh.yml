@@ -1,0 +1,32 @@
+name: Project 5 Status Traditional Chinese
+on:
+  issues:
+    types: [opened, edited, reopened]
+permissions:
+  contents: read
+concurrency:
+  group: project5-status-zh
+  cancel-in-progress: false
+jobs:
+  localize-status:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project5-status-zh:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PROJECT5_OWNER: 'yongshengchen0615'
+      PROJECT5_NUMBER: '5'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Status translation, safety and idempotency
+        run: node --test .github/scripts/project5-status-core.test.mjs
+      - name: Translate native Status labels and descriptions
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node .github/scripts/project5-status-zh.mjs
