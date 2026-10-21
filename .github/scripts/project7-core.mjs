@@ -67,3 +67,34 @@ export function resolveFields(fields, requested) {
 export function findItem(items,url) {
   return items.find(x => x.content?.url === url || x.content?.html_url === url || x.url === url);
 }
+
+
+export function readItemField(item, name) {
+  if (!item || typeof item !== 'object') return undefined;
+  const key = Object.keys(item).find(k => k.toLowerCase() === name.toLowerCase());
+  if (!key) return undefined;
+  const entry = item[key];
+  if (typeof entry === 'string') return entry;
+  if (typeof entry === 'number') return String(entry);
+  if (entry && typeof entry === 'object') {
+    if (typeof entry.name === 'string') return entry.name;
+    if (typeof entry.name?.raw === 'string') return entry.name.raw;
+    if (typeof entry.value === 'string') return entry.value;
+    if (typeof entry.date === 'string') return entry.date;
+  }
+  return undefined;
+}
+
+export function verifyReadback(item, actions) {
+  if (!item) return {ok: false, errors: ['Project item missing']};
+  const errors = [];
+  for (const action of actions) {
+    const observed = readItemField(item, action.name);
+    const expected = action.value;
+    const equal = action.kind === 'date'
+      ? observed?.slice(0,10) === expected
+      : observed?.toLowerCase() === expected.toLowerCase();
+    if (!equal) errors.push(action.name + ': expected ' + expected + ', got ' + (observed ?? '<not returned>'));
+  }
+  return {ok: errors.length === 0, errors};
+}
