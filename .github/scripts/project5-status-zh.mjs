@@ -32,7 +32,7 @@ function inspect(){
 }
 const before=inspect();
 const proposal=buildChineseStatusPlan(before.field.options);
-console.log('PROJECT5_STATUS_BEFORE '+JSON.stringify({options:before.field.options.length,items:before.items.totalCount,changesRequired:proposal.changed,privateDataRedacted:true}));
+console.log('PROJECT5_STATUS_BEFORE '+JSON.stringify({options:before.field.options.length,items:before.items.totalCount,changesRequired:proposal.changed,unmappedCount:proposal.unmappedCount,privateDataRedacted:true}));
 if(proposal.changed){
   const optList=proposal.updates.map(o=>'{id:'+JSON.stringify(o.id)+
     ',name:'+JSON.stringify(o.name)+',color:'+o.color+
@@ -55,6 +55,6 @@ for(const planned of proposal.updates){
 console.log('PROJECT5_STATUS_RESULT '+JSON.stringify({
   verified:true,updated:proposal.changed,options:proposal.updates.length,
   optionIdsPreserved:true,colorsPreserved:true,itemsBefore:before.items.totalCount,
-  itemsAfter:after.items.totalCount,labelsTraditionalChinese:true,descriptionsTraditionalChinese:true,
+  itemsAfter:after.items.totalCount,labelsTraditionalChinese:proposal.unmappedCount===0,unmappedLabelsPreserved:proposal.unmappedCount,descriptionsTraditionalChinese:true,
   privateDataRedacted:true
 }));
