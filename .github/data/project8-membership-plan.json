@@ -1,0 +1,1205 @@
+{
+  "version": "1.0",
+  "project_owner": "yongshengchen0615",
+  "project_number": 8,
+  "cards": [
+    {
+      "key": "M001",
+      "title": "產品目標、角色、MVP 範圍與非功能需求",
+      "description": "產品目標、角色、MVP 範圍與非功能需求；階段：需求與架構；相依：無。",
+      "acceptance": [
+        "產出使用者角色與 MVP In/Out 清單",
+        "確認成功指標與決策紀錄"
+      ],
+      "sprint": "S0",
+      "phase": "需求與架構",
+      "priority": "P0",
+      "estimate_hours": 4,
+      "depends_on": [],
+      "implementation_prompt": "實作 M001：產品目標、角色、MVP 範圍與非功能需求。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：產出使用者角色與 MVP In/Out 清單；確認成功指標與決策紀錄。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M002",
+      "title": "盤點舊 MembershipSystem、LIFF、GAS 與 Netlify/Supabase 功能",
+      "description": "盤點舊 MembershipSystem、LIFF、GAS 與 Netlify/Supabase 功能；階段：需求與架構；相依：無。",
+      "acceptance": [
+        "整理可沿用模組、既有 API、風險與資料遷移清單",
+        "不改動正式環境"
+      ],
+      "sprint": "S0",
+      "phase": "需求與架構",
+      "priority": "P0",
+      "estimate_hours": 6,
+      "depends_on": [],
+      "implementation_prompt": "實作 M002：盤點舊 MembershipSystem、LIFF、GAS 與 Netlify/Supabase 功能。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：整理可沿用模組、既有 API、風險與資料遷移清單；不改動正式環境。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M003",
+      "title": "會員流程與 User Story、API 合約草案",
+      "description": "會員流程與 User Story、API 合約草案；階段：需求與架構；相依：M001, M002。",
+      "acceptance": [
+        "完成註冊到停用主流程、管理流程、錯誤情境與 API 合約"
+      ],
+      "sprint": "S0",
+      "phase": "需求與架構",
+      "priority": "P1",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M001",
+        "M002"
+      ],
+      "implementation_prompt": "實作 M003：會員流程與 User Story、API 合約草案。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：完成註冊到停用主流程、管理流程、錯誤情境與 API 合約。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M004",
+      "title": "威脅模型、個資分類與法遵需求",
+      "description": "威脅模型、個資分類與法遵需求；階段：需求與架構；相依：M001, M003。",
+      "acceptance": [
+        "列出威脅清單、敏感資料、保存週期與身分驗證/授權邊界"
+      ],
+      "sprint": "S0",
+      "phase": "需求與架構",
+      "priority": "P0",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M001",
+        "M003"
+      ],
+      "implementation_prompt": "實作 M004：威脅模型、個資分類與法遵需求。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：列出威脅清單、敏感資料、保存週期與身分驗證/授權邊界。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M005",
+      "title": "技術架構 ADR 與既有系統整合策略",
+      "description": "技術架構 ADR 與既有系統整合策略；階段：需求與架構；相依：M002, M003, M004。",
+      "acceptance": [
+        "記錄採用/不採用方案與擴充界線",
+        "確認系統架構圖"
+      ],
+      "sprint": "S0",
+      "phase": "需求與架構",
+      "priority": "P0",
+      "estimate_hours": 4,
+      "depends_on": [
+        "M002",
+        "M003",
+        "M004"
+      ],
+      "implementation_prompt": "實作 M005：技術架構 ADR 與既有系統整合策略。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：記錄採用/不採用方案與擴充界線；確認系統架構圖。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M006",
+      "title": "建立 Backlog、DoR/DoD 與迭代驗收機制",
+      "description": "建立 Backlog、DoR/DoD 與迭代驗收機制；階段：需求與架構；相依：M003, M005。",
+      "acceptance": [
+        "有卡片模板、PR 規則、狀態切換條件與版本里程碑"
+      ],
+      "sprint": "S0",
+      "phase": "需求與架構",
+      "priority": "P1",
+      "estimate_hours": 3,
+      "depends_on": [
+        "M003",
+        "M005"
+      ],
+      "implementation_prompt": "實作 M006：建立 Backlog、DoR/DoD 與迭代驗收機制。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：有卡片模板、PR 規則、狀態切換條件與版本里程碑。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Test"
+    },
+    {
+      "key": "M007",
+      "title": "Repository 分支與 PR、Review 規範",
+      "description": "Repository 分支與 PR、Review 規範；階段：基礎建置；相依：M005, M006。",
+      "acceptance": [
+        "main/develop/feature 分支策略、保護與 PR 模板完成"
+      ],
+      "sprint": "S1",
+      "phase": "基礎建置",
+      "priority": "P1",
+      "estimate_hours": 3,
+      "depends_on": [
+        "M005",
+        "M006"
+      ],
+      "implementation_prompt": "實作 M007：Repository 分支與 PR、Review 規範。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：main/develop/feature 分支策略、保護與 PR 模板完成。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M008",
+      "title": "本地開發、環境變數與 Secrets 規範",
+      "description": "本地開發、環境變數與 Secrets 規範；階段：基礎建置；相依：M005, M007。",
+      "acceptance": [
+        "提供可重現本地啟動程序",
+        "Secrets 不進 Git",
+        "範例環境檔完成"
+      ],
+      "sprint": "S1",
+      "phase": "基礎建置",
+      "priority": "P1",
+      "estimate_hours": 4,
+      "depends_on": [
+        "M005",
+        "M007"
+      ],
+      "implementation_prompt": "實作 M008：本地開發、環境變數與 Secrets 規範。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：提供可重現本地啟動程序；Secrets 不進 Git；範例環境檔完成。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M009",
+      "title": "Supabase Dev、Staging、Prod 環境隔離",
+      "description": "Supabase Dev、Staging、Prod 環境隔離；階段：基礎建置；相依：M005。",
+      "acceptance": [
+        "隔離資料與憑證",
+        "不得連錯正式資料",
+        "環境對照文件完成"
+      ],
+      "sprint": "S1",
+      "phase": "基礎建置",
+      "priority": "P0",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M005"
+      ],
+      "implementation_prompt": "實作 M009：Supabase Dev、Staging、Prod 環境隔離。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：隔離資料與憑證；不得連錯正式資料；環境對照文件完成。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M010",
+      "title": "會員核心 Schema、migration 與索引",
+      "description": "會員核心 Schema、migration 與索引；階段：基礎建置；相依：M003, M009。",
+      "acceptance": [
+        "建立 profiles、identities、roles、consents、audit_logs 初始 migration"
+      ],
+      "sprint": "S1",
+      "phase": "基礎建置",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M003",
+        "M009"
+      ],
+      "implementation_prompt": "實作 M010：會員核心 Schema、migration 與索引。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：建立 profiles、identities、roles、consents、audit_logs 初始 migration。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M011",
+      "title": "RLS 授權政策與資料隔離測試",
+      "description": "RLS 授權政策與資料隔離測試；階段：基礎建置；相依：M004, M010。",
+      "acceptance": [
+        "跨會員查詢/寫入一律拒絕",
+        "匿名訪客不能讀私有會員資料"
+      ],
+      "sprint": "S1",
+      "phase": "基礎建置",
+      "priority": "P0",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M004",
+        "M010"
+      ],
+      "implementation_prompt": "實作 M011：RLS 授權政策與資料隔離測試。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：跨會員查詢/寫入一律拒絕；匿名訪客不能讀私有會員資料。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Test"
+    },
+    {
+      "key": "M012",
+      "title": "CI：lint、型別、測試、SAST 與 Migration 檢查",
+      "description": "CI：lint、型別、測試、SAST 與 Migration 檢查；階段：基礎建置；相依：M007, M008。",
+      "acceptance": [
+        "PR 自動測試",
+        "失敗不允許合併",
+        "有依賴弱點檢查"
+      ],
+      "sprint": "S1",
+      "phase": "基礎建置",
+      "priority": "P1",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M007",
+        "M008"
+      ],
+      "implementation_prompt": "實作 M012：CI：lint、型別、測試、SAST 與 Migration 檢查。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：PR 自動測試；失敗不允許合併；有依賴弱點檢查。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Test"
+    },
+    {
+      "key": "M013",
+      "title": "Email 註冊、登入與驗證流程（Supabase Auth）",
+      "description": "Email 註冊、登入與驗證流程（Supabase Auth）；階段：註冊登入；相依：M009, M011。",
+      "acceptance": [
+        "正常與重複註冊、錯誤密碼、無效信箱有清楚回應"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M009",
+        "M011"
+      ],
+      "implementation_prompt": "實作 M013：Email 註冊、登入與驗證流程（Supabase Auth）。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：正常與重複註冊、錯誤密碼、無效信箱有清楚回應。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M014",
+      "title": "Email 驗證與忘記密碼流程",
+      "description": "Email 驗證與忘記密碼流程；階段：註冊登入；相依：M013。",
+      "acceptance": [
+        "一次性連結有效期限正確",
+        "過期/重複使用受拒且不洩漏帳號存在"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P1",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M013"
+      ],
+      "implementation_prompt": "實作 M014：Email 驗證與忘記密碼流程。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：一次性連結有效期限正確；過期/重複使用受拒且不洩漏帳號存在。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M015",
+      "title": "Session 更新、登出與登入狀態同步",
+      "description": "Session 更新、登出與登入狀態同步；階段：註冊登入；相依：M013。",
+      "acceptance": [
+        "過期 Session 跳轉登入",
+        "登出撤銷前端狀態",
+        "受保護頁面不外洩資料"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P1",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M013"
+      ],
+      "implementation_prompt": "實作 M015：Session 更新、登出與登入狀態同步。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：過期 Session 跳轉登入；登出撤銷前端狀態；受保護頁面不外洩資料。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M016",
+      "title": "LINE LIFF 登入與伺服器端 Token 驗證",
+      "description": "LINE LIFF 登入與伺服器端 Token 驗證；階段：註冊登入；相依：M004, M013。",
+      "acceptance": [
+        "驗證 issuer/audience/expiry",
+        "不信任 client LINE userId",
+        "跨平台回跳正確"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P1",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M004",
+        "M013"
+      ],
+      "implementation_prompt": "實作 M016：LINE LIFF 登入與伺服器端 Token 驗證。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：驗證 issuer/audience/expiry；不信任 client LINE userId；跨平台回跳正確。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M017",
+      "title": "多身分綁定、帳號衝突處理與解除綁定政策",
+      "description": "多身分綁定、帳號衝突處理與解除綁定政策；階段：註冊登入；相依：M013, M016。",
+      "acceptance": [
+        "同 LINE ID 無重複歸屬",
+        "綁定需重新驗證",
+        "帳號合併有防誤綁機制"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M013",
+        "M016"
+      ],
+      "implementation_prompt": "實作 M017：多身分綁定、帳號衝突處理與解除綁定政策。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：同 LINE ID 無重複歸屬；綁定需重新驗證；帳號合併有防誤綁機制。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M018",
+      "title": "登入速率限制、風險回應與稽核",
+      "description": "登入速率限制、風險回應與稽核；階段：註冊登入；相依：M004, M013。",
+      "acceptance": [
+        "密碼猜測可限制",
+        "錯誤回應不曝露敏感資訊",
+        "異常登入可追查"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P0",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M004",
+        "M013"
+      ],
+      "implementation_prompt": "實作 M018：登入速率限制、風險回應與稽核。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：密碼猜測可限制；錯誤回應不曝露敏感資訊；異常登入可追查。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M019",
+      "title": "註冊、登入、重設密碼與 LINE 登入 UI",
+      "description": "註冊、登入、重設密碼與 LINE 登入 UI；階段：註冊登入；相依：M014, M015, M016。",
+      "acceptance": [
+        "手機/桌機操作完整",
+        "表單可存取",
+        "各錯誤與載入狀態明確"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P1",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M014",
+        "M015",
+        "M016"
+      ],
+      "implementation_prompt": "實作 M019：註冊、登入、重設密碼與 LINE 登入 UI。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：手機/桌機操作完整；表單可存取；各錯誤與載入狀態明確。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M020",
+      "title": "Auth E2E 與權限負向測試",
+      "description": "Auth E2E 與權限負向測試；階段：註冊登入；相依：M017, M018, M019。",
+      "acceptance": [
+        "正常、無效、過期 Token、回跳錯誤與未授權情境全通過"
+      ],
+      "sprint": "S2",
+      "phase": "註冊登入",
+      "priority": "P0",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M017",
+        "M018",
+        "M019"
+      ],
+      "implementation_prompt": "實作 M020：Auth E2E 與權限負向測試。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：正常、無效、過期 Token、回跳錯誤與未授權情境全通過。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Test"
+    },
+    {
+      "key": "M021",
+      "title": "會員資料讀取/編輯 API 與驗證",
+      "description": "會員資料讀取/編輯 API 與驗證；階段：會員管理；相依：M010, M011, M020。",
+      "acceptance": [
+        "會員只能修改自有允許欄位",
+        "輸入格式、長度與生日驗證完成"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M010",
+        "M011",
+        "M020"
+      ],
+      "implementation_prompt": "實作 M021：會員資料讀取/編輯 API 與驗證。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：會員只能修改自有允許欄位；輸入格式、長度與生日驗證完成。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M022",
+      "title": "會員中心 UI、個資編輯與行動版",
+      "description": "會員中心 UI、個資編輯與行動版；階段：會員管理；相依：M021。",
+      "acceptance": [
+        "自助檢視/編輯成功",
+        "空值、錯誤、載入、手機版狀態完整"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M021"
+      ],
+      "implementation_prompt": "實作 M022：會員中心 UI、個資編輯與行動版。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：自助檢視/編輯成功；空值、錯誤、載入、手機版狀態完整。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M023",
+      "title": "頭像上傳、Storage 權限與檔案清理",
+      "description": "頭像上傳、Storage 權限與檔案清理；階段：會員管理；相依：M021。",
+      "acceptance": [
+        "限類型/大小",
+        "不得讀取別人私有檔",
+        "刪除時不留孤兒檔"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P2",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M021"
+      ],
+      "implementation_prompt": "實作 M023：頭像上傳、Storage 權限與檔案清理。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：限類型/大小；不得讀取別人私有檔；刪除時不留孤兒檔。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Security"
+    },
+    {
+      "key": "M024",
+      "title": "會員狀態：啟用、停權、刪除/停用",
+      "description": "會員狀態：啟用、停權、刪除/停用；階段：會員管理；相依：M010, M011。",
+      "acceptance": [
+        "停權帳號不可操作受保護 API",
+        "有操作原因與稽核紀錄"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M010",
+        "M011"
+      ],
+      "implementation_prompt": "實作 M024：會員狀態：啟用、停權、刪除/停用。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：停權帳號不可操作受保護 API；有操作原因與稽核紀錄。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M025",
+      "title": "同意條款版本化與同意紀錄",
+      "description": "同意條款版本化與同意紀錄；階段：會員管理；相依：M004, M021。",
+      "acceptance": [
+        "條款版本、時間、來源可稽核",
+        "拒絕必要同意時不可註冊"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M004",
+        "M021"
+      ],
+      "implementation_prompt": "實作 M025：同意條款版本化與同意紀錄。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：條款版本、時間、來源可稽核；拒絕必要同意時不可註冊。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M026",
+      "title": "RBAC 角色權限矩陣與後端權限檢查",
+      "description": "RBAC 角色權限矩陣與後端權限檢查；階段：會員管理；相依：M004, M011。",
+      "acceptance": [
+        "member/staff/admin 權限分離",
+        "偽造前端身分無法越權"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P0",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M004",
+        "M011"
+      ],
+      "implementation_prompt": "實作 M026：RBAC 角色權限矩陣與後端權限檢查。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：member/staff/admin 權限分離；偽造前端身分無法越權。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Security"
+    },
+    {
+      "key": "M027",
+      "title": "後台會員列表、搜尋與分頁",
+      "description": "後台會員列表、搜尋與分頁；階段：會員管理；相依：M022, M026。",
+      "acceptance": [
+        "非管理員無法查詢",
+        "搜尋有分頁與索引",
+        "無結果可正常顯示"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M022",
+        "M026"
+      ],
+      "implementation_prompt": "實作 M027：後台會員列表、搜尋與分頁。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：非管理員無法查詢；搜尋有分頁與索引；無結果可正常顯示。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M028",
+      "title": "後台會員詳情、狀態變更與稽核",
+      "description": "後台會員詳情、狀態變更與稽核；階段：會員管理；相依：M024, M027。",
+      "acceptance": [
+        "高風險操作需要權限與確認",
+        "前後資料/原因可追溯"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M024",
+        "M027"
+      ],
+      "implementation_prompt": "實作 M028：後台會員詳情、狀態變更與稽核。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：高風險操作需要權限與確認；前後資料/原因可追溯。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M029",
+      "title": "個資匯出、刪除請求與保存策略",
+      "description": "個資匯出、刪除請求與保存策略；階段：會員管理；相依：M024, M025, M026。",
+      "acceptance": [
+        "匯出需身分驗證",
+        "刪除/匿名化可稽核",
+        "保存例外有紀錄"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P1",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M024",
+        "M025",
+        "M026"
+      ],
+      "implementation_prompt": "實作 M029：個資匯出、刪除請求與保存策略。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：匯出需身分驗證；刪除/匿名化可稽核；保存例外有紀錄。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Task"
+    },
+    {
+      "key": "M030",
+      "title": "會員管理整合測試、無障礙與權限測試",
+      "description": "會員管理整合測試、無障礙與權限測試；階段：會員管理；相依：M022, M026, M028, M029。",
+      "acceptance": [
+        "會員、工作人員、管理員可見資料界線與錯誤情境通過"
+      ],
+      "sprint": "S3",
+      "phase": "會員管理",
+      "priority": "P0",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M022",
+        "M026",
+        "M028",
+        "M029"
+      ],
+      "implementation_prompt": "實作 M030：會員管理整合測試、無障礙與權限測試。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：會員、工作人員、管理員可見資料界線與錯誤情境通過。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": true,
+      "type": "Test"
+    },
+    {
+      "key": "M031",
+      "title": "會員等級規則、有效期與升降等機制",
+      "description": "會員等級規則、有效期與升降等機制；階段：等級與點數；相依：M021, M026。",
+      "acceptance": [
+        "等級規則具版本",
+        "邊界日期及升降級行為定義與測試"
+      ],
+      "sprint": "S4",
+      "phase": "等級與點數",
+      "priority": "P1",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M021",
+        "M026"
+      ],
+      "implementation_prompt": "實作 M031：會員等級規則、有效期與升降等機制。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：等級規則具版本；邊界日期及升降級行為定義與測試。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M032",
+      "title": "點數 Ledger 資料模型與交易約束",
+      "description": "點數 Ledger 資料模型與交易約束；階段：等級與點數；相依：M010, M011。",
+      "acceptance": [
+        "以不可覆寫交易流水推導餘額",
+        "限制負數及重複交易"
+      ],
+      "sprint": "S4",
+      "phase": "等級與點數",
+      "priority": "P0",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M010",
+        "M011"
+      ],
+      "implementation_prompt": "實作 M032：點數 Ledger 資料模型與交易約束。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：以不可覆寫交易流水推導餘額；限制負數及重複交易。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M033",
+      "title": "點數累積、扣抵與 Idempotency API",
+      "description": "點數累積、扣抵與 Idempotency API；階段：等級與點數；相依：M032。",
+      "acceptance": [
+        "重送不重複入帳",
+        "並發扣抵不超扣",
+        "失敗交易完整回滾"
+      ],
+      "sprint": "S4",
+      "phase": "等級與點數",
+      "priority": "P1",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M032"
+      ],
+      "implementation_prompt": "實作 M033：點數累積、扣抵與 Idempotency API。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：重送不重複入帳；並發扣抵不超扣；失敗交易完整回滾。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M034",
+      "title": "會員等級、點數餘額及流水 UI",
+      "description": "會員等級、點數餘額及流水 UI；階段：等級與點數；相依：M031, M033。",
+      "acceptance": [
+        "交易明細可分頁",
+        "餘額與 Ledger 一致",
+        "異常資料不造成頁面錯誤"
+      ],
+      "sprint": "S4",
+      "phase": "等級與點數",
+      "priority": "P1",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M031",
+        "M033"
+      ],
+      "implementation_prompt": "實作 M034：會員等級、點數餘額及流水 UI。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：交易明細可分頁；餘額與 Ledger 一致；異常資料不造成頁面錯誤。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M035",
+      "title": "後台手動點數調整與核准機制",
+      "description": "後台手動點數調整與核准機制；階段：等級與點數；相依：M026, M032。",
+      "acceptance": [
+        "具角色限制、原因、追蹤 ID",
+        "大額或高風險操作可加審核"
+      ],
+      "sprint": "S4",
+      "phase": "等級與點數",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M026",
+        "M032"
+      ],
+      "implementation_prompt": "實作 M035：後台手動點數調整與核准機制。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：具角色限制、原因、追蹤 ID；大額或高風險操作可加審核。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M036",
+      "title": "點數規則、並發競態與餘額測試",
+      "description": "點數規則、並發競態與餘額測試；階段：等級與點數；相依：M033, M035。",
+      "acceptance": [
+        "平行請求和重放請求正確",
+        "沒有負餘額及雙重給點"
+      ],
+      "sprint": "S4",
+      "phase": "等級與點數",
+      "priority": "P0",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M033",
+        "M035"
+      ],
+      "implementation_prompt": "實作 M036：點數規則、並發競態與餘額測試。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：平行請求和重放請求正確；沒有負餘額及雙重給點。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Test"
+    },
+    {
+      "key": "M037",
+      "title": "優惠券模板、適用條件、效期資料模型",
+      "description": "優惠券模板、適用條件、效期資料模型；階段：優惠券；相依：M010, M031。",
+      "acceptance": [
+        "活動期間、使用次數、會員適用條件可檢查"
+      ],
+      "sprint": "S5",
+      "phase": "優惠券",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M010",
+        "M031"
+      ],
+      "implementation_prompt": "實作 M037：優惠券模板、適用條件、效期資料模型。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：活動期間、使用次數、會員適用條件可檢查。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M038",
+      "title": "優惠券發放與會員持券模型",
+      "description": "優惠券發放與會員持券模型；階段：優惠券；相依：M037, M026。",
+      "acceptance": [
+        "批次發券可追蹤",
+        "同一活動發券規則不重複計算"
+      ],
+      "sprint": "S5",
+      "phase": "優惠券",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M037",
+        "M026"
+      ],
+      "implementation_prompt": "實作 M038：優惠券發放與會員持券模型。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：批次發券可追蹤；同一活動發券規則不重複計算。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M039",
+      "title": "優惠券核銷 API、冪等與交易保護",
+      "description": "優惠券核銷 API、冪等與交易保護；階段：優惠券；相依：M038。",
+      "acceptance": [
+        "重複掃碼/並發核銷只有一次成功",
+        "逾期/非持有人失敗"
+      ],
+      "sprint": "S5",
+      "phase": "優惠券",
+      "priority": "P1",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M038"
+      ],
+      "implementation_prompt": "實作 M039：優惠券核銷 API、冪等與交易保護。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：重複掃碼/並發核銷只有一次成功；逾期/非持有人失敗。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M040",
+      "title": "優惠券列表、詳情、核銷與後台管理 UI",
+      "description": "優惠券列表、詳情、核銷與後台管理 UI；階段：優惠券；相依：M027, M039。",
+      "acceptance": [
+        "可依狀態瀏覽",
+        "核銷成功/失敗/過期提示完整"
+      ],
+      "sprint": "S5",
+      "phase": "優惠券",
+      "priority": "P1",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M027",
+        "M039"
+      ],
+      "implementation_prompt": "實作 M040：優惠券列表、詳情、核銷與後台管理 UI。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：可依狀態瀏覽；核銷成功/失敗/過期提示完整。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M041",
+      "title": "優惠券 E2E、效期邊界、重複核銷測試",
+      "description": "優惠券 E2E、效期邊界、重複核銷測試；階段：優惠券；相依：M039, M040。",
+      "acceptance": [
+        "效期、限額、不同帳號、同時核銷測試通過"
+      ],
+      "sprint": "S5",
+      "phase": "優惠券",
+      "priority": "P0",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M039",
+        "M040"
+      ],
+      "implementation_prompt": "實作 M041：優惠券 E2E、效期邊界、重複核銷測試。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：效期、限額、不同帳號、同時核銷測試通過。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Test"
+    },
+    {
+      "key": "M042",
+      "title": "Email/LINE 通知事件與訊息範本",
+      "description": "Email/LINE 通知事件與訊息範本；階段：上線維運；相依：M016, M021。",
+      "acceptance": [
+        "列出必要通知事件",
+        "個資最小化",
+        "提供模板與選擇偏好"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P2",
+      "estimate_hours": 5,
+      "depends_on": [
+        "M016",
+        "M021"
+      ],
+      "implementation_prompt": "實作 M042：Email/LINE 通知事件與訊息範本。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：列出必要通知事件；個資最小化；提供模板與選擇偏好。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M043",
+      "title": "通知佇列、重試與失敗紀錄",
+      "description": "通知佇列、重試與失敗紀錄；階段：上線維運；相依：M042。",
+      "acceptance": [
+        "重試不重複發送",
+        "供應商故障可追查",
+        "具退避重試"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P2",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M042"
+      ],
+      "implementation_prompt": "實作 M043：通知佇列、重試與失敗紀錄。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：重試不重複發送；供應商故障可追查；具退避重試。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M044",
+      "title": "稽核事件、集中日誌、告警與監控",
+      "description": "稽核事件、集中日誌、告警與監控；階段：上線維運；相依：M012, M026。",
+      "acceptance": [
+        "登入失敗/越權/發券異常可觀察",
+        "日誌不得有 token/密碼"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P0",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M012",
+        "M026"
+      ],
+      "implementation_prompt": "實作 M044：稽核事件、集中日誌、告警與監控。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：登入失敗/越權/發券異常可觀察；日誌不得有 token/密碼。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "DevOps"
+    },
+    {
+      "key": "M045",
+      "title": "備份、還原演練與 RPO/RTO 確認",
+      "description": "備份、還原演練與 RPO/RTO 確認；階段：上線維運；相依：M009, M010。",
+      "acceptance": [
+        "在隔離環境完成還原",
+        "記錄耗時與資料一致性檢查"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P0",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M009",
+        "M010"
+      ],
+      "implementation_prompt": "實作 M045：備份、還原演練與 RPO/RTO 確認。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：在隔離環境完成還原；記錄耗時與資料一致性檢查。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M046",
+      "title": "效能測試、慢查詢與索引優化",
+      "description": "效能測試、慢查詢與索引優化；階段：上線維運；相依：M030, M036, M041。",
+      "acceptance": [
+        "依事先約定並發與延遲門檻測試",
+        "慢查詢有處理紀錄"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P1",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M030",
+        "M036",
+        "M041"
+      ],
+      "implementation_prompt": "實作 M046：效能測試、慢查詢與索引優化。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：依事先約定並發與延遲門檻測試；慢查詢有處理紀錄。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Test"
+    },
+    {
+      "key": "M047",
+      "title": "資安檢查：OWASP、RLS、Secrets、CORS",
+      "description": "資安檢查：OWASP、RLS、Secrets、CORS；階段：上線維運；相依：M020, M029, M041。",
+      "acceptance": [
+        "高危弱點零未處理",
+        "匿名越權、密鑰外洩檢查通過"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P0",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M020",
+        "M029",
+        "M041"
+      ],
+      "implementation_prompt": "實作 M047：資安檢查：OWASP、RLS、Secrets、CORS。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：高危弱點零未處理；匿名越權、密鑰外洩檢查通過。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Security"
+    },
+    {
+      "key": "M048",
+      "title": "Staging 部署演練、資料 migration 與回滾",
+      "description": "Staging 部署演練、資料 migration 與回滾；階段：上線維運；相依：M012, M045, M047。",
+      "acceptance": [
+        "部署/回滾演練成功",
+        "不碰正式會員資料",
+        "Migration 有備份策略"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P0",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M012",
+        "M045",
+        "M047"
+      ],
+      "implementation_prompt": "實作 M048：Staging 部署演練、資料 migration 與回滾。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：部署/回滾演練成功；不碰正式會員資料；Migration 有備份策略。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "DevOps"
+    },
+    {
+      "key": "M049",
+      "title": "UAT 驗收、跨裝置與無障礙測試",
+      "description": "UAT 驗收、跨裝置與無障礙測試；階段：上線維運；相依：M046, M048。",
+      "acceptance": [
+        "會員及管理員端使用劇本完整通過",
+        "關鍵阻斷缺陷皆修復"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P1",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M046",
+        "M048"
+      ],
+      "implementation_prompt": "實作 M049：UAT 驗收、跨裝置與無障礙測試。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：會員及管理員端使用劇本完整通過；關鍵阻斷缺陷皆修復。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Test"
+    },
+    {
+      "key": "M050",
+      "title": "正式上線、Smoke Test 與釋出監測",
+      "description": "正式上線、Smoke Test 與釋出監測；階段：上線維運；相依：M044, M048, M049。",
+      "acceptance": [
+        "正式環境部署成功",
+        "登入/會員/點數/優惠券 smoke test 通過"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P0",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M044",
+        "M048",
+        "M049"
+      ],
+      "implementation_prompt": "實作 M050：正式上線、Smoke Test 與釋出監測。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：正式環境部署成功；登入/會員/點數/優惠券 smoke test 通過。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Test"
+    },
+    {
+      "key": "M051",
+      "title": "交接文件、應變 SOP 與營運責任分工",
+      "description": "交接文件、應變 SOP 與營運責任分工；階段：上線維運；相依：M044, M050。",
+      "acceptance": [
+        "有 oncall、回滾、資料還原、告警處置與常見問題文件"
+      ],
+      "sprint": "S6",
+      "phase": "上線維運",
+      "priority": "P1",
+      "estimate_hours": 6,
+      "depends_on": [
+        "M044",
+        "M050"
+      ],
+      "implementation_prompt": "實作 M051：交接文件、應變 SOP 與營運責任分工。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：有 oncall、回滾、資料還原、告警處置與常見問題文件。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M052",
+      "title": "Google OIDC 登入及既有會員安全綁定",
+      "description": "Google OIDC 登入及既有會員安全綁定；階段：後續擴充；相依：M017。",
+      "acceptance": [
+        "OAuth state/nonce 正確",
+        "綁定與解除綁定避免接管帳號"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M017"
+      ],
+      "implementation_prompt": "實作 M052：Google OIDC 登入及既有會員安全綁定。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：OAuth state/nonce 正確；綁定與解除綁定避免接管帳號。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Security"
+    },
+    {
+      "key": "M053",
+      "title": "手機驗證、OTP 節流與供應商替換設計",
+      "description": "手機驗證、OTP 節流與供應商替換設計；階段：後續擴充；相依：M018。",
+      "acceptance": [
+        "OTP 失效/次數限制",
+        "國碼、費用與代碼濫用防護"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M018"
+      ],
+      "implementation_prompt": "實作 M053：手機驗證、OTP 節流與供應商替換設計。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：OTP 失效/次數限制；國碼、費用與代碼濫用防護。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M054",
+      "title": "預約管理、行事曆與通知整合",
+      "description": "預約管理、行事曆與通知整合；階段：後續擴充；相依：M030, M043。",
+      "acceptance": [
+        "時段衝突/取消/重送不造成重複預約"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M030",
+        "M043"
+      ],
+      "implementation_prompt": "實作 M054：預約管理、行事曆與通知整合。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：時段衝突/取消/重送不造成重複預約。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M055",
+      "title": "活動報名、抽獎資格與中獎稽核",
+      "description": "活動報名、抽獎資格與中獎稽核；階段：後續擴充；相依：M034, M041。",
+      "acceptance": [
+        "資格判定可重現",
+        "抽獎有紀錄",
+        "並發不超額"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M034",
+        "M041"
+      ],
+      "implementation_prompt": "實作 M055：活動報名、抽獎資格與中獎稽核。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：資格判定可重現；抽獎有紀錄；並發不超額。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M056",
+      "title": "營運報表與匿名化分析看板",
+      "description": "營運報表與匿名化分析看板；階段：後續擴充；相依：M044。",
+      "acceptance": [
+        "統計值與來源一致",
+        "個資欄位權限隔離"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M044"
+      ],
+      "implementation_prompt": "實作 M056：營運報表與匿名化分析看板。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：統計值與來源一致；個資欄位權限隔離。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M057",
+      "title": "GAS/Google Sheets 歷史資料遷移與對帳",
+      "description": "GAS/Google Sheets 歷史資料遷移與對帳；階段：後續擴充；相依：M002, M010, M045。",
+      "acceptance": [
+        "在測試環境完成乾跑、去重、映射與總量對帳",
+        "具回復路徑"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M002",
+        "M010",
+        "M045"
+      ],
+      "implementation_prompt": "實作 M057：GAS/Google Sheets 歷史資料遷移與對帳。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：在測試環境完成乾跑、去重、映射與總量對帳；具回復路徑。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M058",
+      "title": "點數/優惠券濫用偵測與凍結流程",
+      "description": "點數/優惠券濫用偵測與凍結流程；階段：後續擴充；相依：M036, M041。",
+      "acceptance": [
+        "異常規則可調整",
+        "人工覆核有紀錄",
+        "誤判可解除"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P2",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M036",
+        "M041"
+      ],
+      "implementation_prompt": "實作 M058：點數/優惠券濫用偵測與凍結流程。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：異常規則可調整；人工覆核有紀錄；誤判可解除。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M059",
+      "title": "多語系、時區與地區個資規則",
+      "description": "多語系、時區與地區個資規則；階段：後續擴充；相依：M049。",
+      "acceptance": [
+        "核心 UI 多語測試",
+        "時間儲存 UTC 並正確呈現當地時間"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P3",
+      "estimate_hours": 7,
+      "depends_on": [
+        "M049"
+      ],
+      "implementation_prompt": "實作 M059：多語系、時區與地區個資規則。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：核心 UI 多語測試；時間儲存 UTC 並正確呈現當地時間。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Task"
+    },
+    {
+      "key": "M060",
+      "title": "外部 Webhook、合作商家 API 安全設計",
+      "description": "外部 Webhook、合作商家 API 安全設計；階段：後續擴充；相依：M047。",
+      "acceptance": [
+        "驗簽、防重放、節流、交易追蹤與重試策略完成"
+      ],
+      "sprint": "Later",
+      "phase": "後續擴充",
+      "priority": "P3",
+      "estimate_hours": 8,
+      "depends_on": [
+        "M047"
+      ],
+      "implementation_prompt": "實作 M060：外部 Webhook、合作商家 API 安全設計。先檢查實際儲存庫與既有測試，不假設檔案存在。需符合：驗簽、防重放、節流、交易追蹤與重試策略完成。包含正常、錯誤、空資料、邊界與越權測試，禁止洩漏 Secrets，回報變更檔案、測試指令與 PR 驗收證據。",
+      "is_mvp": false,
+      "type": "Security"
+    }
+  ]
+}
