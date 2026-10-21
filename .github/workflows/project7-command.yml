@@ -31,4 +31,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
           GH_PROMPT_DISABLED: '1'
+          PROJECT7_ENABLE_SCHEMA: ${{ vars.PROJECT7_ENABLE_SCHEMA }}
+          PROJECT7_ENABLE_ARCHIVE: ${{ vars.PROJECT7_ENABLE_ARCHIVE }}
+          PROJECT7_ENABLE_SETTINGS: ${{ vars.PROJECT7_ENABLE_SETTINGS }}
         run: node .github/scripts/project7-control.mjs
