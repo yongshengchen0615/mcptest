@@ -1,0 +1,31 @@
+name: Project 8 Permission Preflight
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  project8-preflight:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project8-preflight:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify Project 8 authorization without displaying private data
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          gh project view 8 --owner yongshengchen0615 --format json --jq .id >/dev/null
+          echo "PROJECT8_PROJECT_READ=ok"
+          if gh api repos/yongshengchen0615/MembershipSystem --jq .id >/dev/null 2>&1; then
+            echo "MEMBERSHIP_PRIVATE_REPO_READ=ok"
+          else
+            echo "MEMBERSHIP_PRIVATE_REPO_READ=unavailable"
+          fi
