@@ -21,6 +21,9 @@ jobs:
        contains(github.event.issue.body, '<!-- project5-inventory:v1 -->'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PROJECT5_OWNER: 'yongshengchen0615'
+      PROJECT5_NUMBER: '5'
     steps:
       - name: Check authorization and fetch Project 5 metadata
         shell: bash
@@ -35,7 +38,7 @@ jobs:
           fi
           gh api graphql \
             -f query='query($login:String!,$number:Int!){ user(login:$login){ projectV2(number:$number){id title public items{totalCount} fields(first:100){nodes{... on ProjectV2Field{id name dataType} ... on ProjectV2SingleSelectField{id name options{id name}} ... on ProjectV2IterationField{id name}}} views(first:50){nodes{id name layout}}}}}' \
-            -f login='yongshengchen0615' -F number=5 > project5.json
+            -f login="$PROJECT5_OWNER" -F number="$PROJECT5_NUMBER" > project5.json
           node <<'NODE'
           const fs = require('node:fs');
           const raw = JSON.parse(fs.readFileSync('project5.json', 'utf8'));
