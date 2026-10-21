@@ -24,10 +24,8 @@ function gh(args) {
   }
 }
 
-function items(fieldNames = []) {
-  const args = ['project','item-list',PROJECT_NUMBER,'--owner',OWNER,'--limit','1000'];
-  for (const name of fieldNames) args.push('--field',name);
-  return gh([...args,'--format','json']).items || [];
+function items() {
+  return gh(['project','item-list',PROJECT_NUMBER,'--owner',OWNER,'--limit','1000','--format','json']).items || [];
 }
 if (!process.env.GH_TOKEN) throw new Error('Missing Actions secret PROJECTS_V2_TOKEN');
 if (!process.env.GITHUB_EVENT_PATH) throw new Error('Missing GITHUB_EVENT_PATH');
@@ -59,7 +57,7 @@ for (const action of actions) {
   gh([...args,'--format','json']);
   console.log('Wrote ' + action.name + ': ' + action.value);
 }
-const check = findItem(items(actions.map(a=>a.name)),url);
+const check = findItem(items(),url);
 if (!check) throw new Error('Project item could not be read back after update');
 const result = verifyReadback(check,actions);
 if (!result.ok) throw new Error('Project field readback mismatch: '+result.errors.join('; '));
