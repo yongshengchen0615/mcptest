@@ -15,6 +15,9 @@ jobs:
       contains(github.event.issue.body, '<!-- project5-redesign:apply:v1 -->')
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      PROJECT5_OWNER: 'yongshengchen0615'
+      PROJECT5_NUMBER: '5'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
