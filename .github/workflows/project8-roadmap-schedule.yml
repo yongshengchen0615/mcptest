@@ -1,0 +1,35 @@
+name: Project 8 Roadmap Schedule
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project8-roadmap-schedule
+  cancel-in-progress: false
+
+jobs:
+  sync-roadmap:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project8-roadmap-schedule:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Download private roadmap schedule script
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          gh api repos/yongshengchen0615/MembershipSystem/contents/.github/project8/roadmap-schedule.mjs --jq .content | base64 --decode > roadmap-schedule.mjs
+          node --check roadmap-schedule.mjs
+      - name: Write and verify Roadmap view 4 schedule
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node roadmap-schedule.mjs
