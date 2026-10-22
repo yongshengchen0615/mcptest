@@ -1,0 +1,52 @@
+name: Project 8 Evidence and Roadmap Sync
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  issues:
+    types: [opened, edited, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project8-roadmap-schedule
+  cancel-in-progress: false
+
+jobs:
+  evidence-and-roadmap:
+    if: >-
+      github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.actor == 'yongshengchen0615') ||
+      (github.event_name == 'issues' &&
+       github.event.issue.user.login == 'yongshengchen0615' &&
+       github.event.sender.login == 'yongshengchen0615' &&
+       contains(github.event.issue.body, '<!-- project8-evidence-sync:v1 -->'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Download versioned private scripts and plan
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          mkdir project8
+          for file in plan.json evidence-sync.mjs roadmap-schedule.mjs; do
+            gh api "repos/yongshengchen0615/MembershipSystem/contents/.github/project8/$file" --jq .content | base64 --decode > "project8/$file"
+          done
+          node --check project8/evidence-sync.mjs
+          node --check project8/roadmap-schedule.mjs
+          node project8/evidence-sync.mjs --dry-run
+      - name: Update non-destructive PR and CI evidence fields
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node project8/evidence-sync.mjs
+      - name: Recalculate Roadmap stages from verified card progress
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node project8/roadmap-schedule.mjs
