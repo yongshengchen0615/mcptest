@@ -1,0 +1,35 @@
+name: Project 8 Configure Tracking Views
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project8-configure-tracking-views
+  cancel-in-progress: false
+
+jobs:
+  configure-tracking-views:
+    if: >-
+      github.event.issue.user.login == 'yongshengchen0615' &&
+      github.event.sender.login == 'yongshengchen0615' &&
+      contains(github.event.issue.body, '<!-- project8-configure-views:v1 -->')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Get private script using existing project secret
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          gh api repos/yongshengchen0615/MembershipSystem/contents/.github/project8/configure-views.mjs --jq .content | base64 --decode > configure-views.mjs
+          node --check configure-views.mjs
+      - name: Configure visible tracking columns and verify view grouping
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_V2_TOKEN }}
+          GH_PROMPT_DISABLED: '1'
+        run: node configure-views.mjs
